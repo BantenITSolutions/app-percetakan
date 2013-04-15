@@ -11,9 +11,28 @@
 	<link href="<?php echo base_url().'asset/theme/'.$GLOBALS['site_theme']; ?>/css/bootstrap-responsive.css" rel="stylesheet" />
 	<link id="base-style" href="<?php echo base_url().'asset/theme/'.$GLOBALS['site_theme']; ?>/css/style.css" rel="stylesheet" />
 	<link id="base-style-responsive" href="<?php echo base_url().'asset/theme/'.$GLOBALS['site_theme']; ?>/css/style-responsive.css" rel="stylesheet" />
+	<link id="base-style-responsive" href="<?php echo base_url().'asset/theme/'.$GLOBALS['site_theme']; ?>/css/chosen.css" rel="stylesheet" />
 	<script src="<?php echo base_url().'asset/theme/'.$GLOBALS['site_theme']; ?>/js/jquery-1.7.2.min.js"></script>
 	<script src="<?php echo base_url().'asset/theme/'.$GLOBALS['site_theme']; ?>/js/jquery-ui-1.8.21.custom.min.js"></script>
 	<script src="<?php echo base_url().'asset/theme/'.$GLOBALS['site_theme']; ?>/js/bootstrap.js"></script>
+	<link type="text/css" href="<?php echo base_url().'asset/theme/'.$GLOBALS['site_theme']; ?>/css/jquery-ui-1.7.2.custom.css" rel="stylesheet" />
+	<script type="text/javascript">
+		$(function(){
+			$('#tgl_pesan').datepicker({ dateFormat: 'dd MM yy' });
+			$('#tgl_selesai').datepicker({ dateFormat: 'dd MM yy' });
+		});
+	</script>
+	<link rel="stylesheet" href="<?php echo base_url().'asset/theme/'.$GLOBALS['site_theme']; ?>/colorbox/colorbox.css" />
+	<script src="<?php echo base_url().'asset/theme/'.$GLOBALS['site_theme']; ?>/colorbox/jquery.colorbox.js"></script>
+	<script>
+		  $(document).ready(function(){
+			  $(".cbbarang").colorbox({rel:'group', iframe:true, width:"700", height:"500"});
+			  $(".cbpelanggan").colorbox({rel:'group', iframe:true, width:"700", height:"90%"});
+			  $(".cblsbarang").colorbox({rel:'group', iframe:true, width:"700", height:"60%"});
+			  $(".cbuser").colorbox({rel:'group', iframe:true, width:"700", height:"60%"});
+	
+		  });
+	</script>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
 
 <body>

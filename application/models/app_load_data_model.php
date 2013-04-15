@@ -96,6 +96,49 @@ class app_load_data_model extends CI_Model {
 		return $hasil;
 	}
 	 
+	public function indexs_data_cetakan($limit,$offset)
+	{
+		$hasil = "";
+		$hasil .= '
+			<table class="table table-striped table-bordered bootstrap-datatable datatable">
+			  <thead>
+				  <tr>
+					  <th>No.</th>
+					  <th>Jenis Cetakan</th>
+					  <th>Actions</th>
+				  </tr>
+			  </thead>';
+			  
+		$tot_hal = $this->db->get("dlmbg_jenis_cetakan");
+		$config['base_url'] = base_url() . 'dashboard/jenis_cetakan/index/';
+		$config['total_rows'] = $tot_hal->num_rows();
+		$config['per_page'] = $limit;
+		$config['uri_segment'] = 4;
+		$this->pagination->initialize($config);
+		$get = $this->db->order_by("kode_jenis_cetakan","DESC")->get("dlmbg_jenis_cetakan",$limit,$offset);
+		$i = $offset+1;
+		foreach($get->result() as $g)
+		{
+			$hasil .= ' <tbody>
+				<tr>
+					<td>'.$i.'</td>
+					<td>'.$g->jenis_cetakan.'</td>
+					<td class="center">
+						<a class="btn btn-info" href="'.base_url().'dashboard/jenis_cetakan/edit/'.$g->kode_jenis_cetakan.'">
+							<i class="halflings-icon edit halflings-icon"></i>  
+						</a>
+						<a class="btn btn-danger" href="'.base_url().'dashboard/jenis_cetakan/hapus/'.$g->kode_jenis_cetakan.'" onClick=\'return confirm("Anda yakin?");\'>
+							<i class="halflings-icon trash halflings-icon"></i> 
+						</a>
+					</td>
+				</tr>';
+			$i++;
+		}
+		$hasil .= "</table>";
+		$hasil .= $this->pagination->create_links();
+		return $hasil;
+	}
+	 
 	public function indexs_data_pengguna($limit,$offset)
 	{
 		$hasil = "";
@@ -186,6 +229,80 @@ class app_load_data_model extends CI_Model {
 		$hasil .= "</table>";
 		$hasil .= $this->pagination->create_links();
 		return $hasil;
+	}
+	 
+	public function indexs_data_pemesanan($limit,$offset)
+	{
+		$hasil = "";
+		$hasil .= '
+			<table class="table table-striped table-bordered bootstrap-datatable datatable">
+			  <thead>
+				  <tr>
+					  <th>No.</th>
+					  <th>Tanggal Pesan</th>
+					  <th>Tanggal Selesai</th>
+					  <th>Nama Pelanggan</th>
+					  <th>Total Harga</th>
+					  <th>Status Pembayaran</th>
+					  <th>Actions</th>
+				  </tr>
+			  </thead>';
+			  
+		$tot_hal = $this->db->get("dlmbg_pemesanan");
+		$config['base_url'] = base_url() . 'dashboard/pemesanan/index/';
+		$config['total_rows'] = $tot_hal->num_rows();
+		$config['per_page'] = $limit;
+		$config['uri_segment'] = 4;
+		$this->pagination->initialize($config);
+		$get = $this->db->query("select a.tgl_pesan, a.tgl_selesai, b.nama_pelanggan, a.jumlah_harga, a.status_pembayaran, a.kode_pemesanan
+		 from dlmbg_pemesanan a left join dlmbg_pelanggan b on a.kode_pelanggan=b.kode_pelanggan LIMIT ".$offset.",".$limit."");
+		$i = $offset+1;
+		foreach($get->result() as $g)
+		{
+			$hasil .= ' <tbody>
+				<tr>
+					<td>'.$i.'</td>
+					<td>'.$g->tgl_pesan.'</td>
+					<td>'.$g->tgl_selesai.'</td>
+					<td>'.$g->nama_pelanggan.'</td>
+					<td>'.$g->jumlah_harga.'</td>
+					<td>'.$g->status_pembayaran.'</td>
+					<td class="center">
+						<a class="btn btn-info" href="'.base_url().'dashboard/pemesanan/edit/'.$g->kode_pemesanan.'">
+							<i class="halflings-icon edit halflings-icon"></i>  
+						</a>
+						<a class="btn btn-danger" href="'.base_url().'dashboard/pemesanan/hapus/'.$g->kode_pemesanan.'" onClick=\'return confirm("Anda yakin?");\'>
+							<i class="halflings-icon trash halflings-icon"></i> 
+						</a>
+					</td>
+				</tr>';
+			$i++;
+		}
+		$hasil .= "</table>";
+		$hasil .= $this->pagination->create_links();
+		return $hasil;
+	}
+	
+	
+	
+	
+	public function getMaxKodePesanan()
+	{
+		$q = $this->db->query("select MAX(RIGHT(kode_pemesanan,8)) as kd_max from dlmbg_pemesanan");
+		$kd = "";
+		if($q->num_rows()>0)
+		{
+			foreach($q->result() as $k)
+			{
+				$tmp = ((int)$k->kd_max)+1;
+				$kd = sprintf("%08s", $tmp);
+			}
+		}
+		else
+		{
+			$kd = "00000001";
+		}	
+		return "PS".$kd;
 	}
 }
 
