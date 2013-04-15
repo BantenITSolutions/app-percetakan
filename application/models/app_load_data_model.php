@@ -304,6 +304,17 @@ class app_load_data_model extends CI_Model {
 		}	
 		return "PS".$kd;
 	}
+	
+	public function getBalancedStok($kode_bahan_baku,$kurangi)
+	{
+		$q = $this->db->query("select stok from dlmbg_bahan_baku where kode_bahan_baku='".$kode_bahan_baku."'");
+		$stok = "";
+		foreach($q->result() as $d)
+		{
+			$stok = $d->stok-$kurangi;
+		}
+		return $stok;
+	}
 }
 
 /* End of file app_user_login_model.php */
