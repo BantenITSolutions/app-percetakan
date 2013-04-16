@@ -239,6 +239,7 @@ class app_load_data_model extends CI_Model {
 			  <thead>
 				  <tr>
 					  <th>No.</th>
+					  <th>No. Nota</th>
 					  <th>Tanggal Pesan</th>
 					  <th>Tanggal Selesai</th>
 					  <th>Nama Pelanggan</th>
@@ -254,7 +255,7 @@ class app_load_data_model extends CI_Model {
 		$config['per_page'] = $limit;
 		$config['uri_segment'] = 4;
 		$this->pagination->initialize($config);
-		$get = $this->db->query("select a.tgl_pesan, a.tgl_selesai, b.nama_pelanggan, a.jumlah_harga, a.status_pembayaran, a.kode_pemesanan
+		$get = $this->db->query("select a.tgl_pesan, a.kode_pemesanan, a.tgl_selesai, b.nama_pelanggan, a.jumlah_harga, a.status_pembayaran, a.kode_pemesanan
 		 from dlmbg_pemesanan a left join dlmbg_pelanggan b on a.kode_pelanggan=b.kode_pelanggan LIMIT ".$offset.",".$limit."");
 		$i = $offset+1;
 		foreach($get->result() as $g)
@@ -262,22 +263,224 @@ class app_load_data_model extends CI_Model {
 			$hasil .= ' <tbody>
 				<tr>
 					<td>'.$i.'</td>
+					<td>'.$g->kode_pemesanan.'</td>
 					<td>'.$g->tgl_pesan.'</td>
 					<td>'.$g->tgl_selesai.'</td>
 					<td>'.$g->nama_pelanggan.'</td>
-					<td>'.$g->jumlah_harga.'</td>
+					<td>'.number_format($g->jumlah_harga,2,",",".").'</td>
 					<td>'.$g->status_pembayaran.'</td>
 					<td class="center">
-						<a class="btn btn-info" href="'.base_url().'dashboard/pemesanan/edit/'.$g->kode_pemesanan.'">
+						<a class="btn btn-info" href="'.base_url().'dashboard/pemesanan/edit/'.$g->kode_pemesanan.'" title="Edit">
 							<i class="halflings-icon edit halflings-icon"></i>  
 						</a>
-						<a class="btn btn-danger" href="'.base_url().'dashboard/pemesanan/hapus/'.$g->kode_pemesanan.'" onClick=\'return confirm("Anda yakin?");\'>
+						<a class="btn btn-info" href="'.base_url().'dashboard/pemesanan/cetak/'.$g->kode_pemesanan.'" title="Cetak Kwitansi" target="_blank">
+							<i class="halflings-icon file halflings-icon"></i>  
+						</a>
+						<a class="btn btn-danger" href="'.base_url().'dashboard/pemesanan/hapus/'.$g->kode_pemesanan.'" onClick=\'return confirm("Anda yakin?");\' title="Hapus">
 							<i class="halflings-icon trash halflings-icon"></i> 
 						</a>
 					</td>
 				</tr>';
 			$i++;
 		}
+		$hasil .= "</table>";
+		$hasil .= $this->pagination->create_links();
+		return $hasil;
+	}
+	 
+	public function indexs_data_pembayaran($limit,$offset)
+	{
+		$hasil = "";
+		$hasil .= '
+			<table class="table table-striped table-bordered bootstrap-datatable datatable">
+			  <thead>
+				  <tr>
+					  <th>No.</th>
+					  <th>No. Kwitansi</th>
+					  <th>No. Nota</th>
+					  <th>Tanggal Pesan</th>
+					  <th>Tanggal Selesai</th>
+					  <th>Tanggal Bayar</th>
+					  <th>Nama Pelanggan</th>
+					  <th>Total Harga</th>
+					  <th>Jumlah Bayar</th>
+					  <th>Actions</th>
+				  </tr>
+			  </thead>';
+			  
+		$tot_hal = $this->db->get("dlmbg_pembayaran");
+		$config['base_url'] = base_url() . 'dashboard/pemesanan/index/';
+		$config['total_rows'] = $tot_hal->num_rows();
+		$config['per_page'] = $limit;
+		$config['uri_segment'] = 4;
+		$this->pagination->initialize($config);
+		$get = $this->db->query("select x.kode_pemesanan, x.kode_pembayaran, y.tgl_pesan, y.tgl_selesai, x.tgl_bayar, x.bayar, y.nama_pelanggan, y.jumlah_harga 
+		from dlmbg_pembayaran x left join (select a.tgl_pesan, a.kode_pemesanan, a.tgl_selesai, b.nama_pelanggan, a.jumlah_harga, a.status_pembayaran 
+		from dlmbg_pemesanan a left join dlmbg_pelanggan b on a.kode_pelanggan=b.kode_pelanggan) y on x.kode_pemesanan=y.kode_pemesanan LIMIT ".$offset.",".$limit."");
+		$i = $offset+1;
+		foreach($get->result() as $g)
+		{
+			$hasil .= ' <tbody>
+				<tr>
+					<td>'.$i.'</td>
+					<td>'.$g->kode_pembayaran.'</td>
+					<td>'.$g->kode_pemesanan.'</td>
+					<td>'.$g->tgl_pesan.'</td>
+					<td>'.$g->tgl_selesai.'</td>
+					<td>'.$g->tgl_bayar.'</td>
+					<td>'.$g->nama_pelanggan.'</td>
+					<td>'.number_format($g->jumlah_harga,2,",",".").'</td>
+					<td>'.number_format($g->bayar,2,",",".").'</td>
+					<td class="center">
+						<a class="btn btn-info" href="'.base_url().'dashboard/pembayaran/edit/'.$g->kode_pembayaran.'/'.$g->kode_pemesanan.'" title="Edit">
+							<i class="halflings-icon edit halflings-icon"></i>  
+						</a>
+						<a class="btn btn-info" href="'.base_url().'dashboard/pemesanan/cetak/'.$g->kode_pemesanan.'" title="Cetak Kwitansi" target="_blank">
+							<i class="halflings-icon file halflings-icon"></i>  
+						</a>
+						<a class="btn btn-danger" href="'.base_url().'dashboard/pembayaran/hapus/'.$g->kode_pembayaran.'/'.$g->kode_pemesanan.'" onClick=\'return confirm("Anda yakin?");\' title="Hapus">
+							<i class="halflings-icon trash halflings-icon"></i> 
+						</a>
+					</td>
+				</tr>';
+			$i++;
+		}
+		$hasil .= "</table>";
+		$hasil .= $this->pagination->create_links();
+		return $hasil;
+	}
+	 
+	public function indexs_laporan_pemesanan($cari,$limit,$offset)
+	{
+		$hasil = "";
+		$hasil .= '
+			<table class="table table-striped table-bordered bootstrap-datatable datatable">
+			  <thead>
+				  <tr>
+					  <th>No.</th>
+					  <th>No. Nota</th>
+					  <th>Tanggal Pesan</th>
+					  <th>Tanggal Selesai</th>
+					  <th>Nama Pelanggan</th>
+					  <th>Total Harga</th>
+					  <th>Status Pembayaran</th>
+					  <th>Actions</th>
+				  </tr>
+			  </thead>';
+			  
+		$tot_hal = $this->db->query("select a.tgl_pesan, a.kode_pemesanan, a.tgl_selesai, b.nama_pelanggan, a.jumlah_harga, a.status_pembayaran, a.kode_pemesanan
+		from dlmbg_pemesanan a left join dlmbg_pelanggan b on a.kode_pelanggan=b.kode_pelanggan where 
+		INSTR(CONCAT(' ', tgl_pesan,' '), '".$cari."')");
+		
+		$config['base_url'] = base_url() . 'dashboard/pemesanan/index/';
+		$config['total_rows'] = $tot_hal->num_rows();
+		$config['per_page'] = $limit;
+		$config['uri_segment'] = 4;
+		$this->pagination->initialize($config);
+		$get = $this->db->query("select a.tgl_pesan, a.kode_pemesanan, a.tgl_selesai, b.nama_pelanggan, a.jumlah_harga, a.status_pembayaran, a.kode_pemesanan
+		from dlmbg_pemesanan a left join dlmbg_pelanggan b on a.kode_pelanggan=b.kode_pelanggan where 
+		INSTR(CONCAT(' ', tgl_pesan,' '), '".$cari."') LIMIT ".$offset.",".$limit."");
+		
+		$i = $offset+1;
+		foreach($get->result() as $g)
+		{
+			$hasil .= ' <tbody>
+				<tr>
+					<td>'.$i.'</td>
+					<td>'.$g->kode_pemesanan.'</td>
+					<td>'.$g->tgl_pesan.'</td>
+					<td>'.$g->tgl_selesai.'</td>
+					<td>'.$g->nama_pelanggan.'</td>
+					<td>'.number_format($g->jumlah_harga,2,",",".").'</td>
+					<td>'.$g->status_pembayaran.'</td>
+					<td class="center">
+						<a class="btn btn-info" href="'.base_url().'dashboard/pemesanan/edit/'.$g->kode_pemesanan.'" title="Edit">
+							<i class="halflings-icon edit halflings-icon"></i>  
+						</a>
+						<a class="btn btn-info" href="'.base_url().'dashboard/pemesanan/cetak/'.$g->kode_pemesanan.'" title="Cetak Kwitansi" target="_blank">
+							<i class="halflings-icon file halflings-icon"></i>  
+						</a>
+						<a class="btn btn-danger" href="'.base_url().'dashboard/pemesanan/hapus/'.$g->kode_pemesanan.'" onClick=\'return confirm("Anda yakin?");\' title="Hapus">
+							<i class="halflings-icon trash halflings-icon"></i> 
+						</a>
+					</td>
+				</tr>';
+			$i++;
+		}
+		$hasil .= "</table>";
+		$hasil .= $this->pagination->create_links();
+		return $hasil;
+	}
+	 
+	public function indexs_laporan_pembayaran($cari,$limit,$offset)
+	{
+		$hasil = "";
+		$hasil .= '
+			<table class="table table-striped table-bordered bootstrap-datatable datatable">
+			  <thead>
+				  <tr>
+					  <th>No.</th>
+					  <th>No. Kwitansi</th>
+					  <th>No. Nota</th>
+					  <th>Tanggal Pesan</th>
+					  <th>Tanggal Selesai</th>
+					  <th>Tanggal Bayar</th>
+					  <th>Nama Pelanggan</th>
+					  <th>Total Harga</th>
+					  <th>Jumlah Bayar</th>
+					  <th>Actions</th>
+				  </tr>
+			  </thead>';
+			  
+		$tot_hal = $this->db->query("select x.kode_pemesanan, x.kode_pembayaran, y.tgl_pesan, y.tgl_selesai, x.tgl_bayar, x.bayar, y.nama_pelanggan, y.jumlah_harga 
+		from dlmbg_pembayaran x left join (select a.tgl_pesan, a.kode_pemesanan, a.tgl_selesai, b.nama_pelanggan, a.jumlah_harga, a.status_pembayaran 
+		from dlmbg_pemesanan a left join dlmbg_pelanggan b on a.kode_pelanggan=b.kode_pelanggan) y on x.kode_pemesanan=y.kode_pemesanan where 
+		INSTR(CONCAT(' ', tgl_bayar,' '), '".$cari."')");
+		
+		$config['base_url'] = base_url() . 'dashboard/pemesanan/index/';
+		$config['total_rows'] = $tot_hal->num_rows();
+		$config['per_page'] = $limit;
+		$config['uri_segment'] = 4;
+		$this->pagination->initialize($config);
+		$get = $this->db->query("select x.kode_pemesanan, x.kode_pembayaran, y.tgl_pesan, y.tgl_selesai, x.tgl_bayar, x.bayar, y.nama_pelanggan, y.jumlah_harga 
+		from dlmbg_pembayaran x left join (select a.tgl_pesan, a.kode_pemesanan, a.tgl_selesai, b.nama_pelanggan, a.jumlah_harga, a.status_pembayaran 
+		from dlmbg_pemesanan a left join dlmbg_pelanggan b on a.kode_pelanggan=b.kode_pelanggan) y on x.kode_pemesanan=y.kode_pemesanan where 
+		INSTR(CONCAT(' ', tgl_bayar,' '), '".$cari."') LIMIT ".$offset.",".$limit."");
+		$i = $offset+1;
+		foreach($get->result() as $g)
+		{
+			$hasil .= ' <tbody>
+				<tr>
+					<td>'.$i.'</td>
+					<td>'.$g->kode_pembayaran.'</td>
+					<td>'.$g->kode_pemesanan.'</td>
+					<td>'.$g->tgl_pesan.'</td>
+					<td>'.$g->tgl_selesai.'</td>
+					<td>'.$g->tgl_bayar.'</td>
+					<td>'.$g->nama_pelanggan.'</td>
+					<td>'.number_format($g->jumlah_harga,2,",",".").'</td>
+					<td>'.number_format($g->bayar,2,",",".").'</td>
+					<td class="center">
+						<a class="btn btn-info" href="'.base_url().'dashboard/pembayaran/edit/'.$g->kode_pembayaran.'/'.$g->kode_pemesanan.'" title="Edit">
+							<i class="halflings-icon edit halflings-icon"></i>  
+						</a>
+						<a class="btn btn-info" href="'.base_url().'dashboard/pemesanan/cetak/'.$g->kode_pemesanan.'" title="Cetak Kwitansi" target="_blank">
+							<i class="halflings-icon file halflings-icon"></i>  
+						</a>
+						<a class="btn btn-danger" href="'.base_url().'dashboard/pembayaran/hapus/'.$g->kode_pembayaran.'/'.$g->kode_pemesanan.'" onClick=\'return confirm("Anda yakin?");\' title="Hapus">
+							<i class="halflings-icon trash halflings-icon"></i> 
+						</a>
+					</td>
+				</tr>';
+			$i++;
+		}
+		
+		$penghasilan = $this->db->query("select sum(bayar) as total from dlmbg_pembayaran x where INSTR(CONCAT(' ', tgl_bayar,' '), '".$cari."')")->row();
+		$hasil .= ' <tbody>
+					<tr>
+						<td colspan="8">Total Pendapatan </td>
+						<td colspan="2">'.number_format($penghasilan->total,2,",",".").'</td>
+					</tr>';
 		$hasil .= "</table>";
 		$hasil .= $this->pagination->create_links();
 		return $hasil;
@@ -303,6 +506,25 @@ class app_load_data_model extends CI_Model {
 			$kd = "00000001";
 		}	
 		return "PS".$kd;
+	}
+	
+	public function getMaxKodePembayaran()
+	{
+		$q = $this->db->query("select MAX(RIGHT(kode_pembayaran,8)) as kd_max from dlmbg_pembayaran");
+		$kd = "";
+		if($q->num_rows()>0)
+		{
+			foreach($q->result() as $k)
+			{
+				$tmp = ((int)$k->kd_max)+1;
+				$kd = sprintf("%08s", $tmp);
+			}
+		}
+		else
+		{
+			$kd = "00000001";
+		}	
+		return "PM".$kd;
 	}
 	
 	public function getBalancedStok($kode_bahan_baku,$kurangi)

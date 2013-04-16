@@ -25,4 +25,17 @@ class dashboard extends CI_Controller {
 			redirect("login");
 		}
 	}
+
+	function logout()
+	{
+		if($this->session->userdata("logged_in")!="")
+		{
+			$this->session->sess_destroy();
+			redirect("dashboard");
+		}
+		else
+		{
+			redirect("login");
+		}
+	}
 }

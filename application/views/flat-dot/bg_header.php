@@ -20,6 +20,18 @@
 		$(function(){
 			$('#tgl_pesan').datepicker({ dateFormat: 'dd MM yy' });
 			$('#tgl_selesai').datepicker({ dateFormat: 'dd MM yy' });
+			$('#tgl_bayar').datepicker({ dateFormat: 'dd MM yy' });
+			$('#bulan').datepicker( {
+				changeMonth: true,
+				changeYear: true,
+				showButtonPanel: true,
+				dateFormat: 'MM yy',
+				onClose: function(dateText, inst) { 
+					var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+					var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+					$(this).datepicker('setDate', new Date(year, month, 1));
+				}
+			});
 		});
 	</script>
 	<link rel="stylesheet" href="<?php echo base_url().'asset/theme/'.$GLOBALS['site_theme']; ?>/colorbox/colorbox.css" />
@@ -63,8 +75,10 @@
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="#"><i class="halflings-icon white list"></i> Pemesanan</a></li>
-								<li><a href="#"><i class="halflings-icon white list"></i> Pembayaran</a></li>
+								<li><a href="<?php echo base_url(); ?>dashboard/laporan_pemesanan/harian"><i class="halflings-icon white list"></i> Pemesanan Harian</a></li>
+								<li><a href="<?php echo base_url(); ?>dashboard/laporan_pemesanan/bulanan"><i class="halflings-icon white list"></i> Pemesanan Bulanan</a></li>
+								<li><a href="<?php echo base_url(); ?>dashboard/laporan_pembayaran/harian"><i class="halflings-icon white list"></i> Pembayaran Harian</a></li>
+								<li><a href="<?php echo base_url(); ?>dashboard/laporan_pembayaran/bulanan"><i class="halflings-icon white list"></i> Pembayaran Bulanan</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">
@@ -74,7 +88,7 @@
 							</a>
 							<ul class="dropdown-menu">
 								<li><a href="#"><i class="halflings-icon white user"></i> Profile</a></li>
-								<li><a href="./login.html"><i class="halflings-icon white off"></i> Logout</a></li>
+								<li><a href="<?php echo base_url(); ?>dashboard/logout"><i class="halflings-icon white off"></i> Logout</a></li>
 							</ul>
 						</li>
 					</ul>
