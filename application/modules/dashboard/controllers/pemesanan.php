@@ -48,6 +48,7 @@ class pemesanan extends CI_Controller {
 			
 			$d['no_nota'] = $this->app_load_data_model->getMaxKodePesanan();
 			$d['pelanggan'] = $this->db->get("dlmbg_pelanggan");
+			$d['jenis_cetakan'] = $this->db->get("dlmbg_jenis_cetakan");
 			$d['tgl_pesan'] = $this->session->userdata("tgl_pesan");
 			$d['tgl_selesai'] = $this->session->userdata("tgl_selesai");
 			$d['jumlah_harga'] = $this->session->userdata("jumlah_harga");
@@ -181,6 +182,11 @@ class pemesanan extends CI_Controller {
 			$d['tgl_selesai'] = $get_head->tgl_selesai;
 			$d['jumlah_harga'] = $get_head->jumlah_harga;
 			$d['status_pembayaran'] = $get_head->status_pembayaran;
+			$d['jenis_cetakan'] = explode(",",$get_head->jenis_cetakan);
+			
+			$jc = $d['jenis_cetakan'];
+			$d['dt_jenis_cetakan_no'] = $this->db->where_not_in("kode_jenis_cetakan",$jc)->get("dlmbg_jenis_cetakan");
+			$d['dt_jenis_cetakan_in'] = $this->db->where_in("kode_jenis_cetakan",$jc)->get("dlmbg_jenis_cetakan");
 			
 			$get_detail = $this->db->query("select a.kode_bahan_baku, a.jumlah, b.nama_bahan, b.satuan from dlmbg_pemesanan_detail a left join 
 			(select x.nama_bahan, y.satuan, x.kode_bahan_baku from dlmbg_bahan_baku x left join dlmbg_jenis_satuan y on x.id_jenis_satuan=y.id_jenis_satuan) 
@@ -283,6 +289,14 @@ class pemesanan extends CI_Controller {
 			$d_header['kode_pelanggan'] = $this->input->post('kode_pelanggan');
 			$d_header['jumlah_harga'] = $this->input->post('jumlah_harga');
 			$d_header['status_pembayaran'] = $this->input->post('status_pembayaran');
+			$cetakan = $_POST['jenis_cetakan'];
+			$ic = 0;
+			$jenis_cetakan = "";
+			for($ic;$ic<count($cetakan);$ic++)
+			{
+				$jenis_cetakan .= $cetakan[$ic].',';
+			}
+			$d_header['jenis_cetakan'] = $jenis_cetakan;
 			
 			$this->db->insert("dlmbg_pemesanan",$d_header);
 			foreach($this->cart->contents() as $items)
@@ -344,6 +358,14 @@ class pemesanan extends CI_Controller {
 			$d_header['kode_pelanggan'] = $this->input->post('kode_pelanggan');
 			$d_header['jumlah_harga'] = $this->input->post('jumlah_harga');
 			$d_header['status_pembayaran'] = $this->input->post('status_pembayaran');
+			$cetakan = $_POST['jenis_cetakan'];
+			$ic = 0;
+			$jenis_cetakan = "";
+			for($ic;$ic<count($cetakan);$ic++)
+			{
+				$jenis_cetakan .= $cetakan[$ic].',';
+			}
+			$d_header['jenis_cetakan'] = $jenis_cetakan;
 			
 			$this->db->update("dlmbg_pemesanan",$d_header,$id_up);
 			$this->db->delete("dlmbg_pemesanan_detail",$id_up);

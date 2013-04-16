@@ -93,6 +93,34 @@
 				</table>
 			  
 				<div class="control-group">
+				  <label class="control-label">Jenis Cetakan</label>
+				  <div class="controls">
+				  	<?php
+				  		foreach($dt_jenis_cetakan_in->result_array() as $jc)
+						{
+					?>
+						<label class="checkbox">
+						  <input type="checkbox" name="jenis_cetakan[]" value="<?php echo $jc['kode_jenis_cetakan']; ?>" checked="checked" /> <?php echo $jc['jenis_cetakan']; ?>
+						</label>
+					<?php
+							
+						}
+					?>
+					<?php
+				  		foreach($dt_jenis_cetakan_no->result_array() as $jc)
+						{
+					?>
+						<label class="checkbox">
+						  <input type="checkbox" name="jenis_cetakan[]" value="<?php echo $jc['kode_jenis_cetakan']; ?>" /> <?php echo $jc['jenis_cetakan']; ?>
+						</label>
+					<?php
+							
+						}
+					?>
+				  </div>
+				</div>
+			  
+				<div class="control-group">
 				  <label class="control-label">Jumlah Harga Pesanan</label>
 				  <div class="controls">
 					<input type="text" class="input-xlarge" id="jumlah_harga" value="<?php echo $jumlah_harga; ?>" name="jumlah_harga" required />

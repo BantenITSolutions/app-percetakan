@@ -485,6 +485,50 @@ class app_load_data_model extends CI_Model {
 		$hasil .= $this->pagination->create_links();
 		return $hasil;
 	}
+	 
+	public function generate_index_sistem($limit,$offset)
+	{
+		$hasil="";
+		$tot_hal = $this->db->get("dlmbg_setting");
+
+		$config['base_url'] = base_url() . 'dashboard/sistem/index/';
+		$config['total_rows'] = $tot_hal->num_rows();
+		$config['per_page'] = $limit;
+		$config['uri_segment'] = 4;
+		$config['first_link'] = 'First';
+		$config['last_link'] = 'Last';
+		$config['next_link'] = 'Next';
+		$config['prev_link'] = 'Prev';
+		$this->pagination->initialize($config);
+
+		$w = $this->db->get("dlmbg_setting",$limit,$offset);
+		
+		$hasil .= "<table class='table table-striped table-bordered bootstrap-datatable datatable'>
+					<thead>
+					<tr>
+					<th>No.</th>
+					<th>Setting System</th>
+					<th>Type</th>
+					<th></th>
+					</tr>
+					</thead>";
+		$i = $offset+1;
+		foreach($w->result() as $h)
+		{
+			$hasil .= "<tr>
+					<td>".$i."</td>
+					<td>".$h->title."</td>
+					<td>".$h->tipe."</td>
+					<td>";
+			$hasil .= "<a href='".base_url()."dashboard/sistem/edit/".$h->id_setting."' class='btn btn-small'><i class='icon-edit'></i> Edit</a></td>
+					</tr>";
+			$i++;
+		}
+		$hasil .= '</table>';
+		$hasil .= '<div class="cleaner_h20"></div>';
+		$hasil .= $this->pagination->create_links();
+		return $hasil;
+	}
 	
 	
 	
