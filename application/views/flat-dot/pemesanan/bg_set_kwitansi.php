@@ -116,6 +116,21 @@
 					<?php $i++; $no++;?>
 					<?php endforeach; ?>
 					</table>
+			  
+				<div class="control-group">
+				  <label class="control-label">Status Pembayaran</label>
+				  <div class="controls">
+				  <?php $l=''; $bl='';
+				  if($status_pembayaran=="Lunas"){$l='selected'; $bl='';}
+				  else if($status_pembayaran=="Belum Bayar"){$l=''; $bl='selected';}
+				 	?>
+					<select data-placeholder="Status Pembayaran..." class="chzn-select2" style="width:200px;" tabindex="2" name="status_pembayaran" id="status_pembayaran">
+          				<option value=""></option> 
+						<option value="Belum Bayar" <?php echo $bl; ?>>Belum Bayar</option> 
+						<option value="Lunas" <?php echo $l; ?>>Lunas</option> 
+					</select>
+				  </div>
+				</div>
 				
 				<div class="form-actions">
 				  <button type="submit" class="btn btn-primary">Save changes</button>

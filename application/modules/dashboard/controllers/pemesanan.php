@@ -288,7 +288,7 @@ class pemesanan extends CI_Controller {
 			$d_header['tgl_selesai'] = $this->input->post('tgl_selesai');
 			$d_header['kode_pelanggan'] = $this->input->post('kode_pelanggan');
 			$d_header['jumlah_harga'] = $this->input->post('jumlah_harga');
-			$d_header['status_pembayaran'] = $this->input->post('status_pembayaran');
+			$d_header['status_pembayaran'] = "Belum Bayar";
 			$cetakan = $_POST['jenis_cetakan'];
 			$ic = 0;
 			$jenis_cetakan = "";
@@ -333,6 +333,9 @@ class pemesanan extends CI_Controller {
 			$d_header['tgl_bayar'] = $this->input->post('tgl_bayar');
 			$d_header['bayar'] = $this->input->post('bayar');
 			
+			$up['status_pembayaran'] = $this->input->post('status_pembayaran');
+			$this->db->update("dlmbg_pemesanan",$up,array("kode_pemesanan" => $d_header['kode_pemesanan']));
+			
 			$this->db->insert("dlmbg_pembayaran",$d_header);
 			$this->session->unset_userdata('kode_pelanggan');
 			$this->session->unset_userdata('tgl_pesan');
@@ -357,7 +360,6 @@ class pemesanan extends CI_Controller {
 			$d_header['tgl_selesai'] = $this->input->post('tgl_selesai');
 			$d_header['kode_pelanggan'] = $this->input->post('kode_pelanggan');
 			$d_header['jumlah_harga'] = $this->input->post('jumlah_harga');
-			$d_header['status_pembayaran'] = $this->input->post('status_pembayaran');
 			$cetakan = $_POST['jenis_cetakan'];
 			$ic = 0;
 			$jenis_cetakan = "";

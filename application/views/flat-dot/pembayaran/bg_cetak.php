@@ -1,20 +1,3 @@
-<head>
-	<meta charset="utf-8" />
-	<title><?php echo $GLOBALS['site_title'].' - '.$GLOBALS['site_quotes']; ?></title>
-	<meta name="description" content="ACME Dashboard Bootstrap Admin Template." />
-	<meta name="author" content="Lukasz Holeczek" />
-	<meta name="keyword" content="ACME, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link id="bootstrap-style" href="<?php echo base_url().'asset/theme/'.$GLOBALS['site_theme']; ?>/css/bootstrap.css" rel="stylesheet" />
-	<link href="<?php echo base_url().'asset/theme/'.$GLOBALS['site_theme']; ?>/css/bootstrap-responsive.css" rel="stylesheet" />
-	<link id="base-style" href="<?php echo base_url().'asset/theme/'.$GLOBALS['site_theme']; ?>/css/style.css" rel="stylesheet" />
-	<link id="base-style-responsive" href="<?php echo base_url().'asset/theme/'.$GLOBALS['site_theme']; ?>/css/style-responsive.css" rel="stylesheet" />
-	<link id="base-style-responsive" href="<?php echo base_url().'asset/theme/'.$GLOBALS['site_theme']; ?>/css/chosen.css" rel="stylesheet" />
-	<script src="<?php echo base_url().'asset/theme/'.$GLOBALS['site_theme']; ?>/js/jquery-1.7.2.min.js"></script>
-	<script src="<?php echo base_url().'asset/theme/'.$GLOBALS['site_theme']; ?>/js/jquery-ui-1.8.21.custom.min.js"></script>
-	<script src="<?php echo base_url().'asset/theme/'.$GLOBALS['site_theme']; ?>/js/bootstrap.js"></script>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
-
 <body>
 
 <div class="container-fluid">
@@ -138,11 +121,6 @@
 					</table>
 					
 				  </fieldset>
-				<script src="<?php echo base_url(); ?>asset/theme/<?php echo $GLOBALS['site_theme']; ?>/js/chosen.jquery.js" type="text/javascript"></script>
-				<script type="text/javascript"> 
-					$(".chzn-select").chosen();
-					$(".chzn-select2").chosen();
-				</script>
 				<?php echo form_close(); ?> 
 			</div>
 		</div>
@@ -150,3 +128,5 @@
 	</div>
 	</div>
 	</div>
+</div>
+</body>

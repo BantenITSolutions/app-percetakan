@@ -136,8 +136,9 @@ class pembayaran extends CI_Controller {
 			$this->cart->insert($in_cart);
 			
 			$d['pelanggan'] = $this->db->get("dlmbg_pelanggan");
-			
- 			$this->load->view($GLOBALS['site_theme']."/pembayaran/bg_cetak",$d);
+ 			
+			$html = $this->load->view($GLOBALS['site_theme']."/pembayaran/bg_cetak",$d, true);
+			pdf_create($html,$id_param.time()."");
 		}
 		else
 		{
@@ -153,6 +154,9 @@ class pembayaran extends CI_Controller {
 			$id['kode_pemesanan'] = $this->input->post('no_nota');
 			$d_header['tgl_bayar'] = $this->input->post('tgl_bayar');
 			$d_header['bayar'] = $this->input->post('bayar');
+			
+			$up['status_pembayaran'] = $this->input->post('status_pembayaran');
+			$this->db->update("dlmbg_pemesanan",$up,array("kode_pemesanan" => $id['kode_pemesanan']));
 			
 			$this->db->update("dlmbg_pembayaran",$d_header,$id);
 			$this->session->unset_userdata('kode_pelanggan');
