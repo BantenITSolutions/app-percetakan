@@ -28,7 +28,7 @@ class laporan_pembayaran extends CI_Controller {
 			$d['mark_jenis_satuan'] = "";
 			
 			$cari = $this->session->userdata("tgl_cari");
-			$d['dt_retrieve'] = $this->app_load_data_model->indexs_laporan_pembayaran($cari,$GLOBALS['site_limit_medium'],$uri);
+			$d['dt_retrieve'] = $this->app_load_data_model->indexs_laporan_pembayaran("harian",$cari,$GLOBALS['site_limit_medium'],$uri);
 			$d['tgl_cari'] = $this->session->userdata("tgl_cari");
 			
  			$this->load->view($GLOBALS['site_theme']."/bg_header");
@@ -56,7 +56,7 @@ class laporan_pembayaran extends CI_Controller {
 			$d['mark_jenis_satuan'] = "";
 			
 			$cari = $this->session->userdata("bulan_cari");
-			$d['dt_retrieve'] = $this->app_load_data_model->indexs_laporan_pembayaran($cari,$GLOBALS['site_limit_medium'],$uri);
+			$d['dt_retrieve'] = $this->app_load_data_model->indexs_laporan_pembayaran("bulanan",$cari,$GLOBALS['site_limit_medium'],$uri);
 			$d['bulan_cari'] = $this->session->userdata("bulan_cari");
 			
  			$this->load->view($GLOBALS['site_theme']."/bg_header");

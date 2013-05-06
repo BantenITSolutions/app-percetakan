@@ -52,6 +52,103 @@ class app_load_data_model extends CI_Model {
 		$hasil .= $this->pagination->create_links();
 		return $hasil;
 	}
+	
+	public function indexs_data_karyawan($limit,$offset)
+	{
+		$hasil = "";
+		$hasil .= '
+			<table class="table table-striped table-bordered bootstrap-datatable datatable">
+			  <thead>
+				  <tr>
+					  <th>No.</th>
+					  <th>Nama Karyawan</th>
+					  <th>Gaji Pokok</th>
+					  <th>Actions</th>
+				  </tr>
+			  </thead>';
+			  
+		$tot_hal = $this->db->get("dlmbg_karyawan");
+		$config['base_url'] = base_url() . 'dashboard/data_karyawan/index/';
+		$config['total_rows'] = $tot_hal->num_rows();
+		$config['per_page'] = $limit;
+		$config['uri_segment'] = 4;
+		$this->pagination->initialize($config);
+		$get = $this->db->order_by("id_karyawan","DESC")->get("dlmbg_karyawan",$limit,$offset);
+		$i = $offset+1;
+		foreach($get->result() as $g)
+		{
+			$hasil .= ' <tbody>
+				<tr>
+					<td>'.$i.'</td>
+					<td>'.$g->nama_karyawan.'</td>
+					<td class="center">'.$g->gaji_pokok.'</td>
+					<td class="center">
+						<a class="btn btn-info" href="'.base_url().'dashboard/data_karyawan/edit/'.$g->id_karyawan.'">
+							<i class="halflings-icon edit halflings-icon"></i>  
+						</a>
+						<a class="btn btn-danger" href="'.base_url().'dashboard/data_karyawan/hapus/'.$g->id_karyawan.'" onClick=\'return confirm("Anda yakin?");\'>
+							<i class="halflings-icon trash halflings-icon"></i> 
+						</a>
+					</td>
+				</tr>';
+			$i++;
+		}
+		$hasil .= "</table>";
+		$hasil .= $this->pagination->create_links();
+		return $hasil;
+	}
+	
+	public function indexs_gaji_karyawan($cari,$limit,$offset)
+	{
+		$hasil = "";
+		$hasil .= '
+			<table class="table table-striped table-bordered bootstrap-datatable datatable">
+			  <thead>
+				  <tr>
+					  <th>No.</th>
+					  <th>Nama Karyawan</th>
+					  <th>Bulan</th>
+					  <th>Gaji Pokok</th>
+					  <th>Actions</th>
+				  </tr>
+			  </thead>';
+			  
+		$tot_hal = $this->db->query("select a.tanggal, a.id_gaji_karyawan, b.nama_karyawan, b.gaji_pokok
+		from dlmbg_gaji_karyawan a left join dlmbg_karyawan b on a.id_karyawan=b.id_karyawan where 
+		INSTR(CONCAT(' ', tanggal,' '), '".$cari."')");
+		
+		$config['base_url'] = base_url() . 'dashboard/gaji_karyawan/index/';
+		$config['total_rows'] = $tot_hal->num_rows();
+		$config['per_page'] = $limit;
+		$config['uri_segment'] = 4;
+		$this->pagination->initialize($config);
+		$get = $this->db->query("select a.tanggal, a.id_gaji_karyawan, b.nama_karyawan, b.gaji_pokok
+		from dlmbg_gaji_karyawan a left join dlmbg_karyawan b on a.id_karyawan=b.id_karyawan where 
+		INSTR(CONCAT(' ', tanggal,' '), '".$cari."') LIMIT ".$offset.",".$limit."");
+		$i = $offset+1;
+		foreach($get->result() as $g)
+		{
+			$hasil .= ' <tbody>
+				<tr>
+					<td>'.$i.'</td>
+					<td>'.$g->nama_karyawan.'</td>
+					<td class="center">'.$g->tanggal.'</td>
+					<td class="center">Rp. '.number_format($g->gaji_pokok,2,",",".").'</td>
+					<td class="center">
+						<a class="btn btn-info" href="'.base_url().'dashboard/gaji_karyawan/edit/'.$g->id_gaji_karyawan.'">
+							<i class="halflings-icon edit halflings-icon"></i>  
+						</a>
+						<a class="btn btn-danger" href="'.base_url().'dashboard/gaji_karyawan/hapus/'.$g->id_gaji_karyawan.'" onClick=\'return confirm("Anda yakin?");\'>
+							<i class="halflings-icon trash halflings-icon"></i> 
+						</a>
+					</td>
+				</tr>';
+			$i++;
+		}
+		$hasil .= "</table>";
+		$hasil .= $this->pagination->create_links();
+		return $hasil;
+	}
 	 
 	public function indexs_data_satuan($limit,$offset)
 	{
@@ -412,7 +509,7 @@ class app_load_data_model extends CI_Model {
 		return $hasil;
 	}
 	 
-	public function indexs_laporan_pembayaran($cari,$limit,$offset)
+	public function indexs_laporan_pembayaran($tipe,$cari,$limit,$offset)
 	{
 		$hasil = "";
 		$hasil .= '
@@ -475,12 +572,36 @@ class app_load_data_model extends CI_Model {
 			$i++;
 		}
 		
-		$penghasilan = $this->db->query("select sum(bayar) as total from dlmbg_pembayaran x where INSTR(CONCAT(' ', tgl_bayar,' '), '".$cari."')")->row();
-		$hasil .= ' <tbody>
+		if($tipe=="bulanan")
+		{
+			$penghasilan = $this->db->query("select sum(bayar) as total from dlmbg_pembayaran x where INSTR(CONCAT(' ', tgl_bayar,' '), '".$cari."')")->row();
+			$gaji = $this->db->query("select sum(gaji_pokok) as total from dlmbg_gaji_karyawan x left join dlmbg_karyawan y on x.id_karyawan=y.id_karyawan where 
+			INSTR(CONCAT(' ', tanggal,' '), '".$cari."')")->row();
+			$hasil .= ' <tbody>
 					<tr>
-						<td colspan="8">Total Pendapatan </td>
-						<td colspan="2">'.number_format($penghasilan->total,2,",",".").'</td>
+						<td colspan="8">Total Pendapatan Kotor</td>
+						<td colspan="2">Rp. '.number_format($penghasilan->total,2,",",".").'</td>
 					</tr>';
+			$hasil .= ' <tbody>
+					<tr>
+						<td colspan="8">Total Gaji Karyawan</td>
+						<td colspan="2">Rp. '.number_format($gaji->total,2,",",".").'</td>
+					</tr>';
+			$hasil .= ' <tbody>
+					<tr>
+						<td colspan="8">Total Pendapatan Bersih</td>
+						<td colspan="2">Rp. '.number_format($penghasilan->total-$gaji->total,2,",",".").'</td>
+					</tr>';
+		}
+		else if($tipe=="harian")
+		{
+			$penghasilan = $this->db->query("select sum(bayar) as total from dlmbg_pembayaran x where INSTR(CONCAT(' ', tgl_bayar,' '), '".$cari."')")->row();
+			$hasil .= ' <tbody>
+					<tr>
+						<td colspan="8">Total Pendapatan Kotor</td>
+						<td colspan="2">Rp. '.number_format($penghasilan->total,2,",",".").'</td>
+					</tr>';
+		}
 		$hasil .= "</table>";
 		$hasil .= $this->pagination->create_links();
 		return $hasil;
