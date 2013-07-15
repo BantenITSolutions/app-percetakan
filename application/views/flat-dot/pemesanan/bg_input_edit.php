@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <script type="text/javascript">
 function hitSisa()
 {
@@ -7,6 +8,8 @@ function hitSisa()
 	document.frm_pesan.sisa_bayar.value = sisa;
 }
 </script>
+=======
+>>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 <div id="content" class="span11">
 <div class="row-fluid sortable">		
 	<div class="box span12">
@@ -16,7 +19,11 @@ function hitSisa()
 			Data Pemesanan</h2>
 		</div>
 		<div class="box-content">
+<<<<<<< HEAD
 			<?php echo form_open("dashboard/pemesanan/simpan_update",'class="form-horizontal" name="frm_pesan"'); ?>
+=======
+			<?php echo form_open("dashboard/pemesanan/simpan_update",'class="form-horizontal"'); ?>
+>>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 			  <fieldset>
 			  
 				<div class="control-group">
@@ -72,11 +79,17 @@ function hitSisa()
 					<thead>
 						<tr>
 							<th>No.</th>
+<<<<<<< HEAD
 							<th>Nama Jenis Cetakan</th>
 							<th>Jumlah</th>
 							<th>Harga Satuan</th>
 							<th>Subtotal</th>
 							<th><a href="<?php echo base_url(); ?>dashboard/pemesanan/tambah_item" class="cbbarang btn btn-warning btn-small">Tambah Cetakan</a></th>
+=======
+							<th>Nama Bahan Baku</th>
+							<th>Jumlah Pakai</th>
+							<th><a href="<?php echo base_url(); ?>dashboard/pemesanan/tambah_item" class="cbbarang btn btn-warning btn-small">Tambah Bahan</a></th>
+>>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 						</tr>
 					</thead> 
 					<?php $i = 1; $no=1;?>
@@ -94,8 +107,11 @@ function hitSisa()
 						} 
 						?>
 						</td>
+<<<<<<< HEAD
 						<td><?php echo number_format($items['price'],2,',','.'); ?></td>
 						<td><?php echo number_format($items['subtotal'],2,',','.'); ?></td>
+=======
+>>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 						<td align="center">
 						<a href="#" class="delbutton" id="<?php echo $items['rowid']; ?>" class="btn btn-small">Hapus</a>
 						</td>
@@ -106,6 +122,7 @@ function hitSisa()
 				</table>
 			  
 				<div class="control-group">
+<<<<<<< HEAD
 				  <label class="control-label">Total Harga</label>
 				  <div class="controls">
 					<input type="text" class="input-xlarge" id="jumlah_harga" value="<?php echo $this->cart->total(); ?>" name="jumlah_harga" required />
@@ -116,13 +133,45 @@ function hitSisa()
 				  <label class="control-label">Uang Muka</label>
 				  <div class="controls">
 					<input type="text" class="input-xlarge" id="uang_muka" value="<?php echo $uang_muka; ?>" name="uang_muka" onChange="hitSisa()" required />
+=======
+				  <label class="control-label">Jenis Cetakan</label>
+				  <div class="controls">
+				  	<?php
+				  		foreach($dt_jenis_cetakan_in->result_array() as $jc)
+						{
+					?>
+						<label class="checkbox">
+						  <input type="checkbox" name="jenis_cetakan[]" value="<?php echo $jc['kode_jenis_cetakan']; ?>" checked="checked" /> <?php echo $jc['jenis_cetakan']; ?>
+						</label>
+					<?php
+							
+						}
+					?>
+					<?php
+				  		foreach($dt_jenis_cetakan_no->result_array() as $jc)
+						{
+					?>
+						<label class="checkbox">
+						  <input type="checkbox" name="jenis_cetakan[]" value="<?php echo $jc['kode_jenis_cetakan']; ?>" /> <?php echo $jc['jenis_cetakan']; ?>
+						</label>
+					<?php
+							
+						}
+					?>
+>>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 				  </div>
 				</div>
 			  
 				<div class="control-group">
+<<<<<<< HEAD
 				  <label class="control-label">Sisa Pembayaran</label>
 				  <div class="controls">
 					<input type="text" class="input-xlarge" id="sisa_bayar" value="<?php echo $this->cart->total()-$uang_muka; ?>" name="sisa_bayar" />
+=======
+				  <label class="control-label">Jumlah Harga Pesanan</label>
+				  <div class="controls">
+					<input type="text" class="input-xlarge" id="jumlah_harga" value="<?php echo $jumlah_harga; ?>" name="jumlah_harga" required />
+>>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 				  </div>
 				</div>
 			  

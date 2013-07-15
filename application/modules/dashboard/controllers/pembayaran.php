@@ -14,7 +14,10 @@ class pembayaran extends CI_Controller {
 			$d['mark_pembayaran'] = "active";
 			$d['mark_jenis_cetakan'] = "";
 			$d['mark_jenis_satuan'] = "";
+<<<<<<< HEAD
 			$d['mark_belum_lunas'] = "";
+=======
+>>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 			
 			$d['dt_retrieve'] = $this->app_load_data_model->indexs_data_pembayaran($GLOBALS['site_limit_medium'],$uri);
 			
@@ -41,18 +44,26 @@ class pembayaran extends CI_Controller {
 			$d['mark_pembayaran'] = "active";
 			$d['mark_jenis_cetakan'] = "";
 			$d['mark_jenis_satuan'] = "";
+<<<<<<< HEAD
 			$d['mark_belum_lunas'] = "";
 			
 			$get = $this->db->select("*")->join("dlmbg_pemesanan","dlmbg_pemesanan.kode_pemesanan=dlmbg_pembayaran.kode_pemesanan")->get_where("dlmbg_pembayaran",array("kode_pembayaran"=>$id_param))->row();
+=======
+			
+			$get = $this->db->get_where("dlmbg_pembayaran",array("kode_pembayaran"=>$id_param))->row();
+>>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 			
 			$d['kode_pembayaran'] = $get->kode_pembayaran;
 			$d['no_nota'] = $get->kode_pemesanan;
 			$d['tgl_bayar'] = $get->tgl_bayar;
+<<<<<<< HEAD
 			$d['uang_muka'] = $get->uang_muka;
 			$d['jumlah_total'] = $get->jumlah_harga;
 			$d['jumlah_harga'] = $get->jumlah_harga-$get->uang_muka;
 			$d['jumlah_harga'] = $get->jumlah_harga-$get->uang_muka;
 			$d['status_pembayaran'] = $get->status_pembayaran;
+=======
+>>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 			$d['bayar'] = $get->bayar;
 			
 			$get_head = $this->db->get_where("dlmbg_pemesanan",array("kode_pemesanan"=>$get->kode_pemesanan))->row();
@@ -63,20 +74,36 @@ class pembayaran extends CI_Controller {
 			}
 			$d['tgl_pesan'] = $get_head->tgl_pesan;
 			$d['tgl_selesai'] = $get_head->tgl_selesai;
+<<<<<<< HEAD
 			$d['status_pembayaran'] = $get_head->status_pembayaran;
 			
 			$get_detail = $this->db->query("select a.kode_jenis_cetakan, a.jumlah, b.harga, b.nama_cetakan, b.satuan from dlmbg_pemesanan_detail a left join 
 			(select x.nama_cetakan, y.satuan,  x.harga, x.kode_jenis_cetakan from dlmbg_jenis_cetakan x left join dlmbg_jenis_satuan y on x.id_jenis_satuan=y.id_jenis_satuan) 
 			b on a.kode_jenis_cetakan=b.kode_jenis_cetakan where a.kode_pemesanan='".$id_pemesanan."'");
+=======
+			$d['jumlah_harga'] = $get_head->jumlah_harga;
+			$d['status_pembayaran'] = $get_head->status_pembayaran;
+			
+			$get_detail = $this->db->query("select a.kode_bahan_baku, a.jumlah, b.nama_bahan, b.satuan from dlmbg_pemesanan_detail a left join 
+			(select x.nama_bahan, y.satuan, x.kode_bahan_baku from dlmbg_bahan_baku x left join dlmbg_jenis_satuan y on x.id_jenis_satuan=y.id_jenis_satuan) 
+			b on a.kode_bahan_baku=b.kode_bahan_baku where a.kode_pemesanan='".$id_pemesanan."'");
+>>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 			
 			$in_cart = array();
 			foreach($get_detail->result() as $dpd)
 			{
 				$in_cart[] = array(
+<<<<<<< HEAD
 				'id'      => $dpd->kode_jenis_cetakan,
 				'qty'     => $dpd->jumlah,
 				'price'   => $dpd->harga,
 				'name'    => $dpd->nama_cetakan,
+=======
+				'id'      => $dpd->kode_bahan_baku,
+				'qty'     => $dpd->jumlah,
+				'price'   => "1000",
+				'name'    => $dpd->nama_bahan,
+>>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 				'options' => array('Satuan' => $dpd->satuan));
 			}
 			$this->cart->insert($in_cart);
@@ -106,7 +133,10 @@ class pembayaran extends CI_Controller {
 			$d['mark_pembayaran'] = "active";
 			$d['mark_jenis_cetakan'] = "";
 			$d['mark_jenis_satuan'] = "";
+<<<<<<< HEAD
 			$d['mark_belum_lunas'] = "";
+=======
+>>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 			
 			$get = $this->db->get_where("dlmbg_pembayaran",array("kode_pemesanan"=>$id_param))->row();
 			
@@ -126,18 +156,31 @@ class pembayaran extends CI_Controller {
 			$d['jumlah_harga'] = $get_head->jumlah_harga;
 			$d['status_pembayaran'] = $get_head->status_pembayaran;
 			
+<<<<<<< HEAD
 			$get_detail = $this->db->query("select a.kode_jenis_cetakan, a.jumlah, b.harga, b.nama_cetakan, b.satuan from dlmbg_pemesanan_detail a left join 
 			(select x.nama_cetakan, y.satuan,  x.harga, x.kode_jenis_cetakan from dlmbg_jenis_cetakan x left join dlmbg_jenis_satuan y on x.id_jenis_satuan=y.id_jenis_satuan) 
 			b on a.kode_jenis_cetakan=b.kode_jenis_cetakan where a.kode_pemesanan='".$id_param."'");
+=======
+			$get_detail = $this->db->query("select a.kode_bahan_baku, a.jumlah, b.nama_bahan, b.satuan from dlmbg_pemesanan_detail a left join 
+			(select x.nama_bahan, y.satuan, x.kode_bahan_baku from dlmbg_bahan_baku x left join dlmbg_jenis_satuan y on x.id_jenis_satuan=y.id_jenis_satuan) 
+			b on a.kode_bahan_baku=b.kode_bahan_baku where a.kode_pemesanan='".$id_param."'");
+>>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 			
 			$in_cart = array();
 			foreach($get_detail->result() as $dpd)
 			{
 				$in_cart[] = array(
+<<<<<<< HEAD
 				'id'      => $dpd->kode_jenis_cetakan,
 				'qty'     => $dpd->jumlah,
 				'price'   => $dpd->harga,
 				'name'    => $dpd->nama_cetakan,
+=======
+				'id'      => $dpd->kode_bahan_baku,
+				'qty'     => $dpd->jumlah,
+				'price'   => "1000",
+				'name'    => $dpd->nama_bahan,
+>>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 				'options' => array('Satuan' => $dpd->satuan));
 			}
 			$this->cart->insert($in_cart);
@@ -179,6 +222,7 @@ class pembayaran extends CI_Controller {
 		}
 	}
 
+<<<<<<< HEAD
 	function set()
 	{
 		if($this->session->userdata("logged_in")!="")
@@ -194,6 +238,8 @@ class pembayaran extends CI_Controller {
 		}
 	}
 
+=======
+>>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 	function hapus($id_param)
 	{
 		if($this->session->userdata("logged_in")!="")

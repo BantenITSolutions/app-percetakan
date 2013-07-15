@@ -62,6 +62,7 @@
 					<ul class="nav pull-right">
 						<li class="dropdown">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+<<<<<<< HEAD
 								<i class="halflings-icon white wrench"></i> Utility
 								<span class="caret"></span>
 							</a>
@@ -72,6 +73,8 @@
 						</li>
 						<li class="dropdown">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+=======
+>>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 								<i class="halflings-icon white wrench"></i> Karyawan
 								<span class="caret"></span>
 							</a>
@@ -80,7 +83,10 @@
 								<li><a href="<?php echo base_url(); ?>dashboard/gaji_karyawan"><i class="halflings-icon white tasks"></i> Gaji Karyawan</a></li>
 							</ul>
 						</li>
+<<<<<<< HEAD
 						<?php if($this->session->userdata("level")=="admin"){?>
+=======
+>>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 						<li class="dropdown">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 								<i class="halflings-icon white fire"></i> Sistem
@@ -90,7 +96,10 @@
 								<li><a href="<?php echo base_url(); ?>dashboard/sistem"><i class="halflings-icon white tasks"></i> Konfigurasi</a></li>
 							</ul>
 						</li>
+<<<<<<< HEAD
 						<?php } ?>
+=======
+>>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 						<li class="dropdown">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 								<i class="halflings-icon white print"></i> Laporan

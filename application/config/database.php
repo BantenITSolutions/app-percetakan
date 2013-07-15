@@ -50,7 +50,11 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
+<<<<<<< HEAD
 $db['default']['password'] = '';
+=======
+$db['default']['password'] = 'gedelumbung';
+>>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 $db['default']['database'] = 'db_penjualan';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';

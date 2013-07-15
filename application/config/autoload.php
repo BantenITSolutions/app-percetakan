@@ -64,7 +64,11 @@ $autoload['libraries'] = array('database','session','pagination','cart');
 |	$autoload['helper'] = array('url', 'file');
 */
 
+<<<<<<< HEAD
 $autoload['helper'] = array('form','url','gen_pdf','download');
+=======
+$autoload['helper'] = array('form','url','gen_pdf');
+>>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 
 
 /*

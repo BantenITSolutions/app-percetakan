@@ -3,25 +3,24 @@
 	<div class="box span12">
 		<div class="box-header" data-original-title="">
 			<h2><i class="halflings-icon hdd"></i><span class="break"></span>
-			<i class="halflings-icon plus-sign"></i><a href="<?php echo base_url(); ?>dashboard/jenis_cetakan/tambah">Tambah Data</a><span class="break"></span>
-			Jenis Cetakan</h2>
+			<i class="halflings-icon plus-sign"></i><a href="<?php echo base_url(); ?>dashboard/bahan_baku/tambah">Tambah Data</a><span class="break"></span>
+			Bahan Baku</h2>
 		</div>
 		<div class="box-content">
-			<?php echo form_open("dashboard/jenis_cetakan/simpan",'class="form-horizontal"'); ?>
+			<?php echo form_open("dashboard/bahan_baku/simpan",'class="form-horizontal"'); ?>
 			  <fieldset>
 			  
 				<div class="control-group">
-<<<<<<< HEAD
-				  <label class="control-label">Nama Cetakan</label>
+				  <label class="control-label">Nama Bahan</label>
 				  <div class="controls">
-					<input type="text" class="input-xlarge" value="<?php echo $nama_cetakan; ?>" name="nama_cetakan" required />
+					<input type="text" class="input-xlarge" value="<?php echo $nama_bahan; ?>" name="nama_bahan" required />
 				  </div>
 				</div>
 			  
 				<div class="control-group">
-				  <label class="control-label">Harga</label>
+				  <label class="control-label">Stok</label>
 				  <div class="controls">
-					<input type="text" class="input-xlarge" value="<?php echo $harga; ?>" name="harga" required />
+					<input type="text" class="input-xlarge" value="<?php echo $stok; ?>" name="stok" required />
 				  </div>
 				</div>
 			  
@@ -50,14 +49,6 @@
 				  </div>
 				</div>
 								
-=======
-				  <label class="control-label">Jenis Cetakan</label>
-				  <div class="controls">
-					<input type="text" class="input-xlarge" value="<?php echo $jenis_cetakan; ?>" name="jenis_cetakan" required />
-				  </div>
-				</div>
-				
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 				<div class="form-actions">
 				  <button type="submit" class="btn btn-primary">Save changes</button>
 				  <button type="reset" class="btn">Cancel</button>

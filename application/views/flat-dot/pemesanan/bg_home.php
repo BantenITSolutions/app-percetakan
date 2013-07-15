@@ -7,6 +7,7 @@
 			Data Pemesanan</h2>
 		</div>
 		<div class="box-content">
+<<<<<<< HEAD
 			<?php echo form_open("dashboard/pemesanan/set"); ?>
 			<input type="text" class="input-xlarge" value="<?php echo $this->session->userdata("key"); ?>" name="key" />
 			<select name="key_search">
@@ -17,6 +18,9 @@
 			<?php echo form_close(); ?>
 			<?php echo $dt_retrieve; ?>
 			<span class="label label-success">JUMLAH DATA : <?php echo $this->db->get("dlmbg_pemesanan")->num_rows(); ?></span>
+=======
+			<?php echo $dt_retrieve; ?>
+>>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 		</div>
 	</div>
 

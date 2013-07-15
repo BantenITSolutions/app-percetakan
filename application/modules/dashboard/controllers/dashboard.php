@@ -14,7 +14,10 @@ class dashboard extends CI_Controller {
 			$d['mark_pembayaran'] = "";
 			$d['mark_jenis_cetakan'] = "";
 			$d['mark_jenis_satuan'] = "";
+<<<<<<< HEAD
 			$d['mark_belum_lunas'] = "";
+=======
+>>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 			
  			$this->load->view($GLOBALS['site_theme']."/bg_header");
  			$this->load->view($GLOBALS['site_theme']."/bg_left",$d);

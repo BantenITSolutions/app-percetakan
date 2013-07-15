@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <script type="text/javascript">
 function hitSisa()
 {
@@ -7,6 +8,9 @@ function hitSisa()
 	document.frm_pesan.kembalian.value = sisa;
 }
 </script>
+=======
+
+>>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 	<div id="content" class="span11">
 	<div class="row-fluid sortable">		
 		<div class="box span12">
@@ -15,7 +19,11 @@ function hitSisa()
 				Form Pembayaran</h2>
 			</div>
 			<div class="box-content">
+<<<<<<< HEAD
 				<?php echo form_open("dashboard/pemesanan/simpan_pembayaran",'class="form-horizontal" name="frm_pesan" '); ?>
+=======
+				<?php echo form_open("dashboard/pemesanan/simpan_pembayaran",'class="form-horizontal"'); ?>
+>>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 				  <fieldset>
 				  
 					<div class="control-group">
@@ -83,6 +91,7 @@ function hitSisa()
 					</div>
 				  
 					<div class="control-group">
+<<<<<<< HEAD
 					  <label class="control-label">Total Harga</label>
 					  <div class="controls">
 						<input type="text" class="input-xlarge" id="jumlah_total" value="<?php echo $jumlah_total; ?>" name="jumlah_total" required disabled="disabled" />
@@ -100,12 +109,18 @@ function hitSisa()
 					  <label class="control-label">Jumlah Bayar</label>
 					  <div class="controls">
 						<input type="text" class="input-xlarge" id="jumlah_harga" value="<?php echo $jumlah_harga; ?>" name="jumlah_harga" required readonly />
+=======
+					  <label class="control-label">Jumlah Bayar</label>
+					  <div class="controls">
+						<input type="text" class="input-xlarge" id="jumlah_harga" value="<?php echo $jumlah_harga; ?>" name="jumlah_harga" required disabled="disabled" />
+>>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 					  </div>
 					</div>
 				  
 					<div class="control-group">
 					  <label class="control-label">Bayar</label>
 					  <div class="controls">
+<<<<<<< HEAD
 						<input type="text" class="input-xlarge" id="bayar" onChange=hitSisa(); name="bayar" required />
 					  </div>
 					</div>
@@ -114,6 +129,9 @@ function hitSisa()
 					  <label class="control-label"> kembalian</label>
 					  <div class="controls">
 						<input type="text" class="input-xlarge" id="kembalian" value="" name="kembalian" required />
+=======
+						<input type="text" class="input-xlarge" id="bayar" name="bayar" required />
+>>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 					  </div>
 					</div>
 					
@@ -149,7 +167,19 @@ function hitSisa()
 				<div class="control-group">
 				  <label class="control-label">Status Pembayaran</label>
 				  <div class="controls">
+<<<<<<< HEAD
 				  <?php echo $status_pembayaran; ?>
+=======
+				  <?php $l=''; $bl='';
+				  if($status_pembayaran=="Lunas"){$l='selected'; $bl='';}
+				  else if($status_pembayaran=="Belum Bayar"){$l=''; $bl='selected';}
+				 	?>
+					<select data-placeholder="Status Pembayaran..." class="chzn-select2" style="width:200px;" tabindex="2" name="status_pembayaran" id="status_pembayaran">
+          				<option value=""></option> 
+						<option value="Belum Bayar" <?php echo $bl; ?>>Belum Bayar</option> 
+						<option value="Lunas" <?php echo $l; ?>>Lunas</option> 
+					</select>
+>>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 				  </div>
 				</div>
 				

@@ -26,11 +26,16 @@
 <body>
 	<div class="container-fluid">
 	<div class="well">
+<<<<<<< HEAD
 	<h1>Data - Master Jenis Cetakan</h1>
+=======
+	<h1>Data - Master Bahan Baku</h1>
+>>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 		<div id="body">
 		<?php $atr = array('name' => 'frm', 'id' => 'frm'); echo form_open('dashboard/pemesanan/tambah_barang_pesanan',$atr); ?>
 			<table width="100%" cellpadding="3" cellspacing="0">
 				<tr><td width="130">Nama Bahan</td><td>:</td><td>
+<<<<<<< HEAD
 				<select data-placeholder="Cari nama bahan..." class="chzn-select" style="width:400px;" tabindex="2" name="kode_jenis_cetakan" id="kode_jenis_cetakan">
           		<option value=""></option> 
 					<?php
@@ -38,6 +43,15 @@
 						{
 					?>
 						<option value="<?php echo $db['kode_jenis_cetakan']; ?>"><?php echo $db['nama_cetakan']; ?></option>
+=======
+				<select data-placeholder="Cari nama bahan..." class="chzn-select" style="width:400px;" tabindex="2" name="kode_bahan_baku" id="kode_bahan_baku">
+          		<option value=""></option> 
+					<?php
+						foreach($bahan_baku->result_array() as $db)
+						{
+					?>
+						<option value="<?php echo $db['kode_bahan_baku']; ?>"><?php echo $db['nama_bahan']; ?></option>
+>>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 					<?php
 						}
 					?>
@@ -50,10 +64,17 @@
 			
 			<script src="<?php echo base_url(); ?>asset/theme/<?php echo $GLOBALS['site_theme']; ?>/js/chosen.jquery.js" type="text/javascript"></script>
 			<script type="text/javascript"> $(".chzn-select").chosen().change(function(){ 
+<<<<<<< HEAD
 						var kode_jenis_cetakan = $("#kode_jenis_cetakan").val(); 
 						$.ajax({ 
 						url: "<?php echo base_url(); ?>dashboard/pemesanan/ambil_data_bahan", 
 						data: "kode_jenis_cetakan="+kode_jenis_cetakan, 
+=======
+						var kode_bahan_baku = $("#kode_bahan_baku").val(); 
+						$.ajax({ 
+						url: "<?php echo base_url(); ?>dashboard/pemesanan/ambil_data_bahan", 
+						data: "kode_bahan_baku="+kode_bahan_baku, 
+>>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 						cache: false, 
 						success: function(msg){ 
 						$("#data_barang").html(msg);

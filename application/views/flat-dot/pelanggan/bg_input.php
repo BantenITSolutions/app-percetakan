@@ -30,6 +30,7 @@
 					</select>
 				  </div>
 				</div>
+<<<<<<< HEAD
 			  
 				<div class="control-group">
 				  <label class="control-label">Alamat</label>
@@ -37,6 +38,8 @@
 					<input type="text" class="input-xlarge" value="<?php echo $alamat; ?>" name="alamat" required />
 				  </div>
 				</div>
+=======
+>>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 				
 				<div class="form-actions">
 				  <button type="submit" class="btn btn-primary">Save changes</button>

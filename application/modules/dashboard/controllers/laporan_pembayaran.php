@@ -26,7 +26,10 @@ class laporan_pembayaran extends CI_Controller {
 			$d['mark_pembayaran'] = "";
 			$d['mark_jenis_cetakan'] = "";
 			$d['mark_jenis_satuan'] = "";
+<<<<<<< HEAD
 			$d['mark_belum_lunas'] = "";
+=======
+>>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 			
 			$cari = $this->session->userdata("tgl_cari");
 			$d['dt_retrieve'] = $this->app_load_data_model->indexs_laporan_pembayaran("harian",$cari,$GLOBALS['site_limit_medium'],$uri);
@@ -55,7 +58,10 @@ class laporan_pembayaran extends CI_Controller {
 			$d['mark_pembayaran'] = "";
 			$d['mark_jenis_cetakan'] = "";
 			$d['mark_jenis_satuan'] = "";
+<<<<<<< HEAD
 			$d['mark_belum_lunas'] = "";
+=======
+>>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 			
 			$cari = $this->session->userdata("bulan_cari");
 			$d['dt_retrieve'] = $this->app_load_data_model->indexs_laporan_pembayaran("bulanan",$cari,$GLOBALS['site_limit_medium'],$uri);
