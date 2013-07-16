@@ -14,10 +14,7 @@ class pengguna extends CI_Controller {
 			$d['mark_pembayaran'] = "";
 			$d['mark_jenis_cetakan'] = "";
 			$d['mark_jenis_satuan'] = "";
-<<<<<<< HEAD
 			$d['mark_belum_lunas'] = "";
-=======
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 			
 			$d['dt_retrieve'] = $this->app_load_data_model->indexs_data_pengguna($GLOBALS['site_limit_medium'],$uri);
 			
@@ -44,19 +41,13 @@ class pengguna extends CI_Controller {
 			$d['mark_pembayaran'] = "";
 			$d['mark_jenis_cetakan'] = "";
 			$d['mark_jenis_satuan'] = "";
-<<<<<<< HEAD
 			$d['mark_belum_lunas'] = "";
-=======
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 			
 			$d['id_param'] = "";
 			$d['nama_user'] = "";
 			$d['username'] = "";
 			$d['st'] = "tambah";
-<<<<<<< HEAD
 			$d['level'] = "";
-=======
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 			
  			$this->load->view($GLOBALS['site_theme']."/bg_header");
  			$this->load->view($GLOBALS['site_theme']."/bg_left",$d);
@@ -81,20 +72,14 @@ class pengguna extends CI_Controller {
 			$d['mark_pembayaran'] = "";
 			$d['mark_jenis_cetakan'] = "";
 			$d['mark_jenis_satuan'] = "";
-<<<<<<< HEAD
 			$d['mark_belum_lunas'] = "";
-=======
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 			
 			$id['kode_user'] = $id_param;
 			$get = $this->db->get_where("dlmbg_user",$id)->row();
 			$d['id_param'] = $get->kode_user;
 			$d['username'] = $get->username;
 			$d['nama_user'] = $get->nama_user;
-<<<<<<< HEAD
 			$d['level'] = $get->level;
-=======
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 			$d['st'] = "edit";
 			
  			$this->load->view($GLOBALS['site_theme']."/bg_header");
@@ -115,10 +100,7 @@ class pengguna extends CI_Controller {
 			$id['kode_user'] = $_POST['id_param'];
 			$dt['username'] = $_POST['username'];
 			$dt['nama_user'] = $_POST['nama_user'];
-<<<<<<< HEAD
 			$dt['level'] = $_POST['level'];
-=======
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 			$st = $_POST['st'];
 			
 			if($st=="tambah")
@@ -147,7 +129,6 @@ class pengguna extends CI_Controller {
 		}
 	}
 
-<<<<<<< HEAD
 	function set()
 	{
 		if($this->session->userdata("logged_in")!="")
@@ -161,9 +142,6 @@ class pengguna extends CI_Controller {
 			redirect("login");
 		}
 	}
-
-=======
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 	function hapus($id_param)
 	{
 		if($this->session->userdata("logged_in")!="")

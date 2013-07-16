@@ -18,11 +18,7 @@ $config['modules_locations'] = array(
 | path to your installation.
 |
 */
-<<<<<<< HEAD
 $config['base_url']	= 'http://localhost/app-percetakan/';
-=======
-$config['base_url']	= 'http://localhost/ci-penjualan/';
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 
 /*
 |--------------------------------------------------------------------------

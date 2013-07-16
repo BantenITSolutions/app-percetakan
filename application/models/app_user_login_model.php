@@ -21,10 +21,7 @@ class app_user_login_model extends CI_Model {
 				$sess_data['nama_user_login'] = $qad->nama_user;
 				$sess_data['kode_user'] = $qad->kode_user;
 				$sess_data['username'] = $qad->username;
-<<<<<<< HEAD
 				$sess_data['level'] = $qad->level;
-=======
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 				$this->session->set_userdata($sess_data);
 			}
 			redirect("dashboard");

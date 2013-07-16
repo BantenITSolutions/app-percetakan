@@ -17,32 +17,23 @@ class app_load_data_model extends CI_Model {
 				  <tr>
 					  <th>No.</th>
 					  <th>Nama Pelanggan</th>
-<<<<<<< HEAD
 					  <th>Alamat</th>
-=======
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 					  <th>Jenis Pelanggan</th>
 					  <th>Actions</th>
 				  </tr>
 			  </thead>';
-<<<<<<< HEAD
 		
 		$where['nama_pelanggan']  = $this->session->userdata("key"); 
 		$tot_hal = $this->db->like($where)->get("dlmbg_pelanggan");
-=======
 			  
 		$tot_hal = $this->db->get("dlmbg_pelanggan");
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 		$config['base_url'] = base_url() . 'dashboard/pelanggan/index/';
 		$config['total_rows'] = $tot_hal->num_rows();
 		$config['per_page'] = $limit;
 		$config['uri_segment'] = 4;
 		$this->pagination->initialize($config);
-<<<<<<< HEAD
 		$get = $this->db->like($where)->order_by("kode_pelanggan","DESC")->get("dlmbg_pelanggan",$limit,$offset);
-=======
 		$get = $this->db->order_by("kode_pelanggan","DESC")->get("dlmbg_pelanggan",$limit,$offset);
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 		$i = $offset+1;
 		foreach($get->result() as $g)
 		{
@@ -50,10 +41,7 @@ class app_load_data_model extends CI_Model {
 				<tr>
 					<td>'.$i.'</td>
 					<td>'.$g->nama_pelanggan.'</td>
-<<<<<<< HEAD
 					<td>'.$g->alamat_pelanggan.'</td>
-=======
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 					<td class="center">'.$g->jenis.'</td>
 					<td class="center">
 						<a class="btn btn-info" href="'.base_url().'dashboard/pelanggan/edit/'.$g->kode_pelanggan.'">
@@ -84,24 +72,18 @@ class app_load_data_model extends CI_Model {
 					  <th>Actions</th>
 				  </tr>
 			  </thead>';
-<<<<<<< HEAD
 		
 		$where['nama_karyawan']  = $this->session->userdata("key"); 	  
 		$tot_hal = $this->db->like($where)->get("dlmbg_karyawan");
-=======
 			  
 		$tot_hal = $this->db->get("dlmbg_karyawan");
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 		$config['base_url'] = base_url() . 'dashboard/data_karyawan/index/';
 		$config['total_rows'] = $tot_hal->num_rows();
 		$config['per_page'] = $limit;
 		$config['uri_segment'] = 4;
 		$this->pagination->initialize($config);
-<<<<<<< HEAD
 		$get = $this->db->like($where)->order_by("id_karyawan","DESC")->get("dlmbg_karyawan",$limit,$offset);
-=======
 		$get = $this->db->order_by("id_karyawan","DESC")->get("dlmbg_karyawan",$limit,$offset);
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 		$i = $offset+1;
 		foreach($get->result() as $g)
 		{
@@ -190,25 +172,18 @@ class app_load_data_model extends CI_Model {
 					  <th>Actions</th>
 				  </tr>
 			  </thead>';
-<<<<<<< HEAD
 		
 
 		$where['satuan']  = $this->session->userdata("key"); 		  
 		$tot_hal = $this->db->like($where)->get("dlmbg_jenis_satuan");
-=======
-			  
 		$tot_hal = $this->db->get("dlmbg_jenis_satuan");
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 		$config['base_url'] = base_url() . 'dashboard/satuan/index/';
 		$config['total_rows'] = $tot_hal->num_rows();
 		$config['per_page'] = $limit;
 		$config['uri_segment'] = 4;
 		$this->pagination->initialize($config);
-<<<<<<< HEAD
 		$get = $this->db->like($where)->order_by("id_jenis_satuan","DESC")->get("dlmbg_jenis_satuan",$limit,$offset);
-=======
 		$get = $this->db->order_by("id_jenis_satuan","DESC")->get("dlmbg_jenis_satuan",$limit,$offset);
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 		$i = $offset+1;
 		foreach($get->result() as $g)
 		{
@@ -244,25 +219,20 @@ class app_load_data_model extends CI_Model {
 					  <th>Actions</th>
 				  </tr>
 			  </thead>';
-<<<<<<< HEAD
 		
 
 		$where['nama_cetakan']  = $this->session->userdata("key"); 
 		$tot_hal = $this->db->like($where)->get("dlmbg_jenis_cetakan");
-=======
+
 			  
 		$tot_hal = $this->db->get("dlmbg_jenis_cetakan");
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 		$config['base_url'] = base_url() . 'dashboard/jenis_cetakan/index/';
 		$config['total_rows'] = $tot_hal->num_rows();
 		$config['per_page'] = $limit;
 		$config['uri_segment'] = 4;
 		$this->pagination->initialize($config);
-<<<<<<< HEAD
 		$get = $this->db->like($where)->order_by("kode_jenis_cetakan","DESC")->get("dlmbg_jenis_cetakan",$limit,$offset);
-=======
 		$get = $this->db->order_by("kode_jenis_cetakan","DESC")->get("dlmbg_jenis_cetakan",$limit,$offset);
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 		$i = $offset+1;
 		foreach($get->result() as $g)
 		{
@@ -296,7 +266,6 @@ class app_load_data_model extends CI_Model {
 					  <th>No.</th>
 					  <th>Nama Pengguna</th>
 					  <th>Username</th>
-<<<<<<< HEAD
 					  <th>Level</th>
 					  <th>Actions</th>
 				  </tr>
@@ -304,23 +273,14 @@ class app_load_data_model extends CI_Model {
 
 		$where['nama_user']  = $this->session->userdata("key"); 
 		$tot_hal = $this->db->like($where)->get("dlmbg_user");
-=======
-					  <th>Actions</th>
-				  </tr>
-			  </thead>';
 			  
-		$tot_hal = $this->db->get("dlmbg_user");
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 		$config['base_url'] = base_url() . 'dashboard/pengguna/index/';
 		$config['total_rows'] = $tot_hal->num_rows();
 		$config['per_page'] = $limit;
 		$config['uri_segment'] = 4;
 		$this->pagination->initialize($config);
-<<<<<<< HEAD
 		$get = $this->db->like($where)->order_by("kode_user","DESC")->get("dlmbg_user",$limit,$offset);
-=======
 		$get = $this->db->order_by("kode_user","DESC")->get("dlmbg_user",$limit,$offset);
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 		$i=$offset+1;
 		foreach($get->result() as $g)
 		{
@@ -329,10 +289,7 @@ class app_load_data_model extends CI_Model {
 					<td>'.$i.'</td>
 					<td>'.$g->nama_user.'</td>
 					<td class="center">'.$g->username.'</td>
-<<<<<<< HEAD
 					<td class="center">'.$g->level.'</td>
-=======
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 					<td class="center">
 						<a class="btn btn-info" href="'.base_url().'dashboard/pengguna/edit/'.$g->kode_user.'">
 							<i class="halflings-icon edit halflings-icon"></i>  
@@ -349,11 +306,8 @@ class app_load_data_model extends CI_Model {
 		return $hasil;
 	}
 	 
-<<<<<<< HEAD
-	public function indexs_data_jenis_cetakan($limit,$offset)
-=======
+	//public function indexs_data_jenis_cetakan($limit,$offset)
 	public function indexs_data_bahan_baku($limit,$offset)
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 	{
 		$hasil = "";
 		$hasil .= '
@@ -362,41 +316,34 @@ class app_load_data_model extends CI_Model {
 				  <tr>
 					  <th>No.</th>
 					  <th>Nama Bahan</th>
-<<<<<<< HEAD
 					  <th>Harga Satuan</th>
-=======
 					  <th>Stok</th>
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 					  <th>Satuan</th>
 					  <th>Actions</th>
 				  </tr>
 			  </thead>';
-<<<<<<< HEAD
 
 		$where['nama_cetakan']  = $this->session->userdata("key"); 
 		$tot_hal = $this->db->like($where)->get("dlmbg_jenis_cetakan");
 		$config['base_url'] = base_url() . 'dashboard/jenis_cetakan/index/';
-=======
 			  
 		$tot_hal = $this->db->get("dlmbg_bahan_baku");
 		$config['base_url'] = base_url() . 'dashboard/bahan_baku/index/';
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
 		$config['total_rows'] = $tot_hal->num_rows();
 		$config['per_page'] = $limit;
 		$config['uri_segment'] = 4;
 		$this->pagination->initialize($config);
-<<<<<<< HEAD
 		$get = $this->db->query("select * from dlmbg_jenis_cetakan a left join dlmbg_jenis_satuan b on a.id_jenis_satuan=b.id_jenis_satuan where nama_cetakan like '%".$where['nama_cetakan']."%' limit ".$offset.",".$limit."");
-=======
+
 		$get = $this->db->query("select * from dlmbg_bahan_baku a left join dlmbg_jenis_satuan b on a.id_jenis_satuan=b.id_jenis_satuan limit ".$offset.",".$limit."");
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
+
 		$i = $offset+1;
 		foreach($get->result() as $g)
 		{
 			$hasil .= ' <tbody>
 				<tr>
 					<td>'.$i.'</td>
-<<<<<<< HEAD
+
 					<td>'.$g->nama_cetakan.'</td>
 					<td class="center">Rp. '.number_format($g->harga,2,',','.').'</td>
 					<td class="center">'.$g->satuan.'</td>
@@ -405,7 +352,7 @@ class app_load_data_model extends CI_Model {
 							<i class="halflings-icon edit halflings-icon"></i>  
 						</a>
 						<a class="btn btn-danger" href="'.base_url().'dashboard/jenis_cetakan/hapus/'.$g->kode_jenis_cetakan.'" onClick=\'return confirm("Anda yakin?");\'>
-=======
+
 					<td>'.$g->nama_bahan.'</td>
 					<td class="center">'.$g->stok.'</td>
 					<td class="center">'.$g->satuan.'</td>
@@ -414,7 +361,7 @@ class app_load_data_model extends CI_Model {
 							<i class="halflings-icon edit halflings-icon"></i>  
 						</a>
 						<a class="btn btn-danger" href="'.base_url().'dashboard/bahan_baku/hapus/'.$g->kode_bahan_baku.'" onClick=\'return confirm("Anda yakin?");\'>
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
+
 							<i class="halflings-icon trash halflings-icon"></i> 
 						</a>
 					</td>
@@ -438,17 +385,17 @@ class app_load_data_model extends CI_Model {
 					  <th>Tanggal Pesan</th>
 					  <th>Tanggal Selesai</th>
 					  <th>Nama Pelanggan</th>
-<<<<<<< HEAD
+
 					  <th>Alamat</th>
 					  <th>Jenis Cetakan</th>
-=======
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
+
+
 					  <th>Total Harga</th>
 					  <th>Status Pembayaran</th>
 					  <th>Actions</th>
 				  </tr>
 			  </thead>';
-<<<<<<< HEAD
+
 		
 		if($this->session->userdata("key_search")=="")
 		{
@@ -462,22 +409,22 @@ class app_load_data_model extends CI_Model {
 
 		$tot_hal = $this->db->query("select a.tgl_pesan, a.kode_pemesanan, b.alamat_pelanggan, a.tgl_selesai, b.nama_pelanggan, a.jumlah_harga, a.status_pembayaran, a.kode_pemesanan
 		 from dlmbg_pemesanan a left join dlmbg_pelanggan b on a.kode_pelanggan=b.kode_pelanggan where ".$key." like '%".$val."%'");
-=======
+
 			  
 		$tot_hal = $this->db->get("dlmbg_pemesanan");
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
+
 		$config['base_url'] = base_url() . 'dashboard/pemesanan/index/';
 		$config['total_rows'] = $tot_hal->num_rows();
 		$config['per_page'] = $limit;
 		$config['uri_segment'] = 4;
 		$this->pagination->initialize($config);
-<<<<<<< HEAD
+
 		$get = $this->db->query("select a.tgl_pesan, a.kode_pemesanan, b.alamat_pelanggan, a.tgl_selesai, b.nama_pelanggan, a.jumlah_harga, a.status_pembayaran, a.kode_pemesanan
 		 from dlmbg_pemesanan a left join dlmbg_pelanggan b on a.kode_pelanggan=b.kode_pelanggan where ".$key." like '%".$val."%' LIMIT ".$offset.",".$limit."");
-=======
+
 		$get = $this->db->query("select a.tgl_pesan, a.kode_pemesanan, a.tgl_selesai, b.nama_pelanggan, a.jumlah_harga, a.status_pembayaran, a.kode_pemesanan
 		 from dlmbg_pemesanan a left join dlmbg_pelanggan b on a.kode_pelanggan=b.kode_pelanggan LIMIT ".$offset.",".$limit."");
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
+
 		$i = $offset+1;
 		foreach($get->result() as $g)
 		{
@@ -488,7 +435,7 @@ class app_load_data_model extends CI_Model {
 					<td>'.$g->tgl_pesan.'</td>
 					<td>'.$g->tgl_selesai.'</td>
 					<td>'.$g->nama_pelanggan.'</td>
-<<<<<<< HEAD
+
 					<td>'.$g->alamat_pelanggan.'</td>';
 					$get_detail = $this->db->select("*")->join("dlmbg_jenis_cetakan","dlmbg_jenis_cetakan.kode_jenis_cetakan=dlmbg_pemesanan_detail.kode_jenis_cetakan")->get_where("dlmbg_pemesanan_detail",array("kode_pemesanan"=>$g->kode_pemesanan));
 					$hasil .= "<th>";
@@ -603,7 +550,7 @@ class app_load_data_model extends CI_Model {
 					}
 					$hasil .='	<a class="btn btn-info" href="'.base_url().'dashboard/pemesanan/cetak/'.$g->kode_pemesanan.'" title="Cetak Kwitansi" target="_blank">
 							<i class="halflings-icon file halflings-icon"></i>  
-=======
+
 					<td>'.number_format($g->jumlah_harga,2,",",".").'</td>
 					<td>'.$g->status_pembayaran.'</td>
 					<td class="center">
@@ -615,7 +562,7 @@ class app_load_data_model extends CI_Model {
 						</a>
 						<a class="btn btn-danger" href="'.base_url().'dashboard/pemesanan/hapus/'.$g->kode_pemesanan.'" onClick=\'return confirm("Anda yakin?");\' title="Hapus">
 							<i class="halflings-icon trash halflings-icon"></i> 
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
+
 						</a>
 					</td>
 				</tr>';
@@ -640,7 +587,7 @@ class app_load_data_model extends CI_Model {
 					  <th>Tanggal Selesai</th>
 					  <th>Tanggal Bayar</th>
 					  <th>Nama Pelanggan</th>
-<<<<<<< HEAD
+
 					  <th>Alamat</th>
 					  <th>Jenis Cetakan</th>
 					  <th>Total Harga</th>
@@ -666,29 +613,20 @@ class app_load_data_model extends CI_Model {
 		from dlmbg_pemesanan x left join dlmbg_pelanggan y on x.kode_pelanggan=y.kode_pelanggan) b on a.kode_pemesanan=b.kode_pemesanan where ".$key." like '%".$val."%'");
 
 		$config['base_url'] = base_url() . 'dashboard/pembayaran/index/';
-=======
-					  <th>Total Harga</th>
-					  <th>Jumlah Bayar</th>
-					  <th>Actions</th>
-				  </tr>
-			  </thead>';
-			  
-		$tot_hal = $this->db->get("dlmbg_pembayaran");
-		$config['base_url'] = base_url() . 'dashboard/pemesanan/index/';
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
+
 		$config['total_rows'] = $tot_hal->num_rows();
 		$config['per_page'] = $limit;
 		$config['uri_segment'] = 4;
 		$this->pagination->initialize($config);
-<<<<<<< HEAD
+
 		$get = $this->db->query("select a.kode_pemesanan, status_pembayaran, a.kode_pembayaran, b.tgl_pesan, b.tgl_selesai, a.tgl_bayar, a.bayar, b.nama_pelanggan, b.alamat_pelanggan, b.jumlah_harga 
 		from dlmbg_pembayaran a left join (select x.tgl_pesan, x.kode_pemesanan, x.tgl_selesai, y.nama_pelanggan, y.alamat_pelanggan, x.jumlah_harga, x.status_pembayaran 
 		from dlmbg_pemesanan x left join dlmbg_pelanggan y on x.kode_pelanggan=y.kode_pelanggan) b on a.kode_pemesanan=b.kode_pemesanan where ".$key." like '%".$val."%' LIMIT ".$offset.",".$limit."");
-=======
+
 		$get = $this->db->query("select x.kode_pemesanan, x.kode_pembayaran, y.tgl_pesan, y.tgl_selesai, x.tgl_bayar, x.bayar, y.nama_pelanggan, y.jumlah_harga 
 		from dlmbg_pembayaran x left join (select a.tgl_pesan, a.kode_pemesanan, a.tgl_selesai, b.nama_pelanggan, a.jumlah_harga, a.status_pembayaran 
 		from dlmbg_pemesanan a left join dlmbg_pelanggan b on a.kode_pelanggan=b.kode_pelanggan) y on x.kode_pemesanan=y.kode_pemesanan LIMIT ".$offset.",".$limit."");
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
+
 		$i = $offset+1;
 		foreach($get->result() as $g)
 		{
@@ -701,7 +639,7 @@ class app_load_data_model extends CI_Model {
 					<td>'.$g->tgl_selesai.'</td>
 					<td>'.$g->tgl_bayar.'</td>
 					<td>'.$g->nama_pelanggan.'</td>
-<<<<<<< HEAD
+
 					<td>'.$g->alamat_pelanggan.'</td>';
 					$get_detail = $this->db->select("*")->join("dlmbg_jenis_cetakan","dlmbg_jenis_cetakan.kode_jenis_cetakan=dlmbg_pemesanan_detail.kode_jenis_cetakan")->get_where("dlmbg_pemesanan_detail",array("kode_pemesanan"=>$g->kode_pemesanan));
 					$hasil .= "<th>";
@@ -728,7 +666,7 @@ class app_load_data_model extends CI_Model {
 
 					$hasil .='<a class="btn btn-info" href="'.base_url().'dashboard/pemesanan/cetak/'.$g->kode_pemesanan.'" title="Cetak Kwitansi" target="_blank">
 							<i class="halflings-icon file halflings-icon"></i>  
-=======
+
 					<td>'.number_format($g->jumlah_harga,2,",",".").'</td>
 					<td>'.number_format($g->bayar,2,",",".").'</td>
 					<td class="center">
@@ -740,7 +678,7 @@ class app_load_data_model extends CI_Model {
 						</a>
 						<a class="btn btn-danger" href="'.base_url().'dashboard/pembayaran/hapus/'.$g->kode_pembayaran.'/'.$g->kode_pemesanan.'" onClick=\'return confirm("Anda yakin?");\' title="Hapus">
 							<i class="halflings-icon trash halflings-icon"></i> 
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
+
 						</a>
 					</td>
 				</tr>';
@@ -794,15 +732,19 @@ class app_load_data_model extends CI_Model {
 					<td>'.$g->nama_pelanggan.'</td>
 					<td>'.number_format($g->jumlah_harga,2,",",".").'</td>
 					<td>'.$g->status_pembayaran.'</td>
-					<td class="center">
-						<a class="btn btn-info" href="'.base_url().'dashboard/pemesanan/edit/'.$g->kode_pemesanan.'" title="Edit">
+					<td class="center">';
+					if($this->session->userdata("level")=="admin")
+					{
+						$hasil .='	<a class="btn btn-info" href="'.base_url().'dashboard/pemesanan/edit/'.$g->kode_pemesanan.'" title="Edit">
 							<i class="halflings-icon edit halflings-icon"></i>  
-						</a>
-						<a class="btn btn-info" href="'.base_url().'dashboard/pemesanan/cetak/'.$g->kode_pemesanan.'" title="Cetak Kwitansi" target="_blank">
-							<i class="halflings-icon file halflings-icon"></i>  
 						</a>
 						<a class="btn btn-danger" href="'.base_url().'dashboard/pemesanan/hapus/'.$g->kode_pemesanan.'" onClick=\'return confirm("Anda yakin?");\' title="Hapus">
 							<i class="halflings-icon trash halflings-icon"></i> 
+						</a>';
+					}
+						
+						$hasil .='<a class="btn btn-info" href="'.base_url().'dashboard/pemesanan/cetak/'.$g->kode_pemesanan.'" title="Cetak Kwitansi" target="_blank">
+							<i class="halflings-icon file halflings-icon"></i>  
 						</a>
 					</td>
 				</tr>';
@@ -861,15 +803,20 @@ class app_load_data_model extends CI_Model {
 					<td>'.$g->nama_pelanggan.'</td>
 					<td>'.number_format($g->jumlah_harga,2,",",".").'</td>
 					<td>'.number_format($g->bayar,2,",",".").'</td>
-					<td class="center">
-						<a class="btn btn-info" href="'.base_url().'dashboard/pembayaran/edit/'.$g->kode_pembayaran.'/'.$g->kode_pemesanan.'" title="Edit">
+					<td class="center">';
+					
+					if($this->session->userdata("level")=="admin")
+					{
+						$hasil .='	<a class="btn btn-info" href="'.base_url().'dashboard/pembayaran/edit/'.$g->kode_pembayaran.'/'.$g->kode_pemesanan.'" title="Edit">
 							<i class="halflings-icon edit halflings-icon"></i>  
-						</a>
-						<a class="btn btn-info" href="'.base_url().'dashboard/pemesanan/cetak/'.$g->kode_pemesanan.'" title="Cetak Kwitansi" target="_blank">
-							<i class="halflings-icon file halflings-icon"></i>  
 						</a>
 						<a class="btn btn-danger" href="'.base_url().'dashboard/pembayaran/hapus/'.$g->kode_pembayaran.'/'.$g->kode_pemesanan.'" onClick=\'return confirm("Anda yakin?");\' title="Hapus">
 							<i class="halflings-icon trash halflings-icon"></i> 
+						</a>';
+					}
+						
+						$hasil .='	<a class="btn btn-info" href="'.base_url().'dashboard/pemesanan/cetak/'.$g->kode_pemesanan.'" title="Cetak Kwitansi" target="_blank">
+							<i class="halflings-icon file halflings-icon"></i>  
 						</a>
 					</td>
 				</tr>';
@@ -914,12 +861,12 @@ class app_load_data_model extends CI_Model {
 	public function generate_index_sistem($limit,$offset)
 	{
 		$hasil="";
-<<<<<<< HEAD
+
 		$where['title']  = $this->session->userdata("key"); 
 		$tot_hal = $this->db->like($where)->get("dlmbg_setting");
-=======
+
 		$tot_hal = $this->db->get("dlmbg_setting");
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
+
 
 		$config['base_url'] = base_url() . 'dashboard/sistem/index/';
 		$config['total_rows'] = $tot_hal->num_rows();
@@ -931,11 +878,11 @@ class app_load_data_model extends CI_Model {
 		$config['prev_link'] = 'Prev';
 		$this->pagination->initialize($config);
 
-<<<<<<< HEAD
+
 		$w = $this->db->like($where)->get("dlmbg_setting",$limit,$offset);
-=======
+
 		$w = $this->db->get("dlmbg_setting",$limit,$offset);
->>>>>>> 30b93fd26dcb762b9b13b0dde45342c45bc14713
+
 		
 		$hasil .= "<table class='table table-striped table-bordered bootstrap-datatable datatable'>
 					<thead>
